@@ -23,12 +23,24 @@ function TaskList() {
          {
             tasks.map(task =>(
                <div key={ task.id } className="bg-neutral-800 p-4 rounded-md">
-                  <h4>{ task.title }</h4>
+                  <header className="flex justify-between my-2">
+                     <h4 className="text-xl">{ task.title }</h4>
+                     <div className="flex gap-x-2">
+                        <Link 
+                           to={ `/edit-task/${ task.id }` }
+                           className="bg-zinc-200 px-2 py-1 text-xs rounded-md" 
+                        >
+                           Edit
+                        </Link>
+                        <button 
+                           className="bg-red-500 px-2 py-1 text-xs rounded-md"
+                           onClick={ () => handleDelete( task.id ) }
+                        >
+                           Delete
+                        </button>
+                     </div>
+                  </header>
                   <p>{ task.description }</p>
-                  <Link to={ `/edit-task/${ task.id }` }>Edit</Link>
-                  <button onClick={ () => handleDelete( task.id ) }>
-                     Delete
-                  </button>
                </div>
             ))
          }
